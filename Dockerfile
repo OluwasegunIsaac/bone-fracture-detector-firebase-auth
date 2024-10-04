@@ -28,4 +28,4 @@ COPY . .
 # Expose the port the app runs on
 EXPOSE 8080
 # Command to run the application
-CMD ["streamlit", "run", "main.py", "--server.port", "8080", "--server.enableCORS", "false", "--server.enableWebsocketCompression" "false"]
+CMD ["streamlit", "run", "main.py", "--server.port", "8080", "--server.enableCORS", "false"]
