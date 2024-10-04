@@ -6,7 +6,7 @@ FROM python:3.9-slim
 ENV PYTHONUNBUFFERED=1
 
 # Set the working directory
-ENV APP_HOME /app
+ENV APP_HOME=/app
 WORKDIR $APP_HOME
 
 # Install system dependencies for OpenCV and other packages
@@ -27,5 +27,6 @@ COPY . .
 
 # Expose the port the app runs on
 EXPOSE 8080
+
 # Command to run the application
 CMD ["streamlit", "run", "main.py", "--server.port", "8080", "--server.enableCORS", "false"]
