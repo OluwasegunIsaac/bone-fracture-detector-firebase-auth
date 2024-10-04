@@ -6,20 +6,13 @@ FROM python:3.9-slim
 ENV PYTHONUNBUFFERED=1
 
 # Set the working directory
-ENV APP_HOME=/app
+ENV APP_HOME /app
 WORKDIR $APP_HOME
 
-# Install system dependencies for OpenCV and other packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    libgl1-mesa-glx \
-    libglib2.0-0 \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
 # Copy requirements.txt before other files to leverage Docker cache
-COPY requirements.txt ./ 
+COPY requirements.txt ./
 
-# Install Python dependencies
+# Install production dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code
