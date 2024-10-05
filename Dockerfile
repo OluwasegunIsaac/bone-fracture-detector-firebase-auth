@@ -12,7 +12,6 @@ WORKDIR $APP_HOME
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgl1-mesa-glx \
     libglib2.0-0 \
-    libopencv-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -22,6 +21,9 @@ COPY requirements.txt ./
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Apply workaround for the healthz endpoint issue in Streamlit
+RUN find /usr/local/lib/python3.9/site-packages/streamlit -type f \( -iname \*.py -o -iname \*.js \) -print0 | xargs -0 sed -i 's/healthz/health-check/g'
+
 # Copy the rest of the application code
 COPY . .
 
@@ -29,4 +31,4 @@ COPY . .
 EXPOSE 8080
 
 # Command to run the application
-CMD ["streamlit", "run", "main.py", "--server.port", "8080", "--server.enableXsrfProtection", "false", "--server.enableCORS", "false"]
+CMD ["streamlit", "run", "main.py", "--server.address", "0.0.0.0", "--server.port", "8080", "--server.enableCORS", "false"]
