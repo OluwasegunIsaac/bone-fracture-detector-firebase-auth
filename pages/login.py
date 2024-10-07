@@ -75,21 +75,6 @@ if login_ui():
 _,col1,_ = st.columns([0.9,2,1])
 
 with col1:
-    st.markdown("""
-    <style>
-    .app-spacing {
-        margin-top: -30px;
-        margin-bottom: -30px;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-    header = """
-        <div class='app-spacing' style="padding:4px">
-        <h1 style='text-align: center; color: #22686E; font-size: 30px;'>Access without logging in</h1>
-        </div>
-        """
-    st.markdown(header, unsafe_allow_html=True)
     if st.button("Continue without login", type="secondary", use_container_width=True):
         st.session_state.user = "guest"  # Set session state for guest user
         st.switch_page("pages/app.py")
