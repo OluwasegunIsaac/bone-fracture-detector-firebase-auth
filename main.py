@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", page_title="Bone Fracture Detector", page_icon="assets/logo.png")
 
 
 logo_path = "assets/logo.png"  # Path to your logo
@@ -24,7 +24,7 @@ st.markdown(hide_sidebar_style, unsafe_allow_html=True)
 
 
 # --- PAGE SETUP ---
-login = st.Page(page="pages/login.py", title="Login Page", icon=":material/home:", default=True)
+login = st.Page(page="pages/login.py", title="Login Page", default=True)
 app = st.Page(page="pages/app.py", title="Bone Fracture Detection", icon=":material/home:")
 
 
