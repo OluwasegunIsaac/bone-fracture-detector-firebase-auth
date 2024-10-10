@@ -1,5 +1,5 @@
 streamlit==1.38.0
-opencv-python-headless
+opencv-python-headless==4.5.5.62
 ultralytics==8.0.163
 Pillow==10.0.0
 firebase-admin==6.5.0
